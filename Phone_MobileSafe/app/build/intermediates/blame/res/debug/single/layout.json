@@ -56,12 +56,12 @@
         "source": "E:\\AndroidStudioProjects\\Phone_MobileSafe\\Phone_MobileSafe\\app\\src\\main\\res\\layout\\view_setting_item.xml"
     },
     {
-        "merged": "E:\\AndroidStudioProjects\\Phone_MobileSafe\\Phone_MobileSafe\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_lostfind.xml",
-        "source": "E:\\AndroidStudioProjects\\Phone_MobileSafe\\Phone_MobileSafe\\app\\src\\main\\res\\layout\\activity_lostfind.xml"
-    },
-    {
         "merged": "E:\\AndroidStudioProjects\\Phone_MobileSafe\\Phone_MobileSafe\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_listitem.xml",
         "source": "E:\\AndroidStudioProjects\\Phone_MobileSafe\\Phone_MobileSafe\\app\\src\\main\\res\\layout\\activity_listitem.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudioProjects\\Phone_MobileSafe\\Phone_MobileSafe\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_lostfind.xml",
+        "source": "E:\\AndroidStudioProjects\\Phone_MobileSafe\\Phone_MobileSafe\\app\\src\\main\\res\\layout\\activity_lostfind.xml"
     },
     {
         "merged": "E:\\AndroidStudioProjects\\Phone_MobileSafe\\Phone_MobileSafe\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_atool.xml",

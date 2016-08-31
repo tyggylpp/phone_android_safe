@@ -2,6 +2,7 @@ package com.dragon.phone_mobilesafe.activity;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -39,7 +40,7 @@ import java.util.List;
 import java.util.logging.Handler;
 import java.util.logging.LogRecord;
 
-public class AppManagerActivity extends Activity {
+public class AppManagerActivity extends Activity implements View.OnClickListener {
 
     private List<AppInfo> systemAppInfos;
     private List<AppInfo> userAppInfos;
@@ -54,6 +55,10 @@ public class AppManagerActivity extends Activity {
     @ViewInject(R.id.tv_app)
     private TextView tv_app;
     private PopupWindow popup;
+    private LinearLayout ll_run;
+    private LinearLayout ll_uninstall;
+    private LinearLayout ll_detail;
+    private AppInfo clickInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +66,31 @@ public class AppManagerActivity extends Activity {
         initUi();
         initData();
     }
+
+    /**
+     * Called when a view has been clicked.
+     *
+     * @param v The view that was clicked.
+     */
+    @Override
+    public void onClick(View v) {
+        switch (v.getId())
+        {
+            case R.id.ll_run:
+                System.out.println("ll run is click ed !!!!");
+                this.startActivity(new Intent(this.getPackageManager().getLaunchIntentForPackage(clickInfo.getApkPackageName())));
+                break;
+            case  R.id.ll_unstall:
+                System.out.println("ll_unstall");
+                break;
+            case R.id.ll_detail:
+                System.out.println("ll_detail");
+                break;
+            default:
+                break;
+        }
+    }
+
     private  class  AppManagerAdapter extends BaseAdapter
     {
 
@@ -187,6 +217,7 @@ public class AppManagerActivity extends Activity {
     private void initUi() {
         setContentView(R.layout.activity_app_manager);
         ViewUtils.inject(this);
+
         long freerom = Environment.getDataDirectory().getFreeSpace();
         long freesd = Environment.getExternalStorageDirectory().getFreeSpace();
         tv_rom.setText("rom free:"+Formatter.formatFileSize(this,freerom));
@@ -221,9 +252,21 @@ public class AppManagerActivity extends Activity {
                 Object obj = list_view.getItemAtPosition(position);
                 if(obj!=null&& obj instanceof AppInfo)
                 {
+
                     popupDissmiss();
 
+
+
                     View contentView =View.inflate(AppManagerActivity.this,R.layout.item_popup,null);
+                    clickInfo = (AppInfo) obj;
+
+                    ll_run = (LinearLayout) contentView.findViewById(R.id.ll_run);
+                    ll_uninstall = (LinearLayout) contentView.findViewById(R.id.ll_unstall);
+                    ll_detail = (LinearLayout) contentView.findViewById(R.id.ll_detail);
+                    ll_run.setOnClickListener(AppManagerActivity.this);
+                    ll_uninstall.setOnClickListener(AppManagerActivity.this);
+                    ll_detail.setOnClickListener(AppManagerActivity.this);
+
                     popup = new PopupWindow(contentView, ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
                     //popup使用动画需要设置背景，使用透明的背景不会覆盖原始的背景
                     popup.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
